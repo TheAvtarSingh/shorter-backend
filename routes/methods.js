@@ -21,10 +21,10 @@ const storeUrl =  async (req, res) => {
             const existingLink = await Shortnermodel.findOne({ link: link });
 
             if (existingLink) {
-                return res.status(200).json({ message: "Link already exists", shortedLink: `https://shorter-backend.vercel.app/${existingLink.shortedLink}`,status:200 });
+                return res.status(200).json({ message: "Link already exists", shortedLink: `${process.env.SHORTER_URI_DOMAIN}/${existingLink.shortedLink}`,status:200 });
             } else {
                 await Shortnermodel.create({ link: link, shortedLink: idGenerated});
-                return res.status(201).json({ message: "Link created successfully", shortedLink: `https://shorter-backend.vercel.app/${idGenerated}`,status:201  });
+                return res.status(201).json({ message: "Link created successfully", shortedLink: `${process.env.SHORTER_URI_DOMAIN}/${idGenerated}`,status:201  });
             }
         } catch (err) {
             return res.status(500).json({ message: "Unexpected Error Occured !!",status:500  });
