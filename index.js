@@ -15,5 +15,7 @@ connectDB();
 const PORT = process.env.PORT;
 
 // routes
+
+app.use('/',routes);
 app.use('/api',routes);
 app.listen(PORT,()=>{console.log("Server Started !! - ",PORT);})
