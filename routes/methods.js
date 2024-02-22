@@ -39,7 +39,8 @@ const redirectUrl = async (req,res)=>{
     try {
         const existingLink = await Shortnermodel.findOne({  shortedLink: id});
         if(existingLink){
-            return res.redirect(existingLink.link);
+            // return res.redirect(existingLink.link);
+            return res.status(200).json({ message: "Link Found", link: existingLink.link,status:200  });
         }else{
             return res.status(404).json({ message: "Link not found",status:404  });
         }
